@@ -5,12 +5,13 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Column(
-      children: [
-        HeaderAndSearchbox(),
-        MethodsInBody(),
-      ],
-    ));
+      child: Column(
+        children: [
+          HeaderAndSearchbox(),
+          MethodsInBody(),
+        ],
+      ),
+    );
   }
 
   // ignore: non_constant_identifier_names
