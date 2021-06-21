@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/constants.dart';
 
 class HeaderAndSearchbox extends StatelessWidget {
-  const HeaderAndSearchbox({Key key}) : super(key: key);
+  const HeaderAndSearchbox();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class HeaderAndSearchbox extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Hi Trainer !',
-                      style: Theme.of(context).textTheme.headline5.copyWith(
+                      style: Theme.of(context).textTheme.headline5!.copyWith(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     Spacer(),

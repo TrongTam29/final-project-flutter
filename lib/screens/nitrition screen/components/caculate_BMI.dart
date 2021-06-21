@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/constants.dart';
 
 class CaculateBMI extends StatefulWidget {
-  CaculateBMI({Key key}) : super(key: key);
+  CaculateBMI();
 
   @override
   _CaculateBMIState createState() => _CaculateBMIState();
@@ -56,9 +56,8 @@ class _CaculateBMIState extends State<CaculateBMI> {
 // ignore: camel_case_types
 class BMI_Container extends StatelessWidget {
   const BMI_Container({
-    Key key,
-    @required this.size,
-  }) : super(key: key);
+    required this.size,
+  });
 
   final Size size;
 

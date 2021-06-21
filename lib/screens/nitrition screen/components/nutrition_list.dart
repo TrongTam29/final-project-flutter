@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class NutritionListLeft extends StatelessWidget {
   const NutritionListLeft(
-      {Key key,
-      @required this.size,
-      this.nutritionImage,
-      this.nutritionSubTitle,
-      this.nutritionTitle})
-      : super(key: key);
+      {required this.size,
+      required this.nutritionImage,
+      required this.nutritionSubTitle,
+      required this.nutritionTitle});
 
   final Size size;
   final String nutritionImage;
@@ -58,12 +56,10 @@ class NutritionListLeft extends StatelessWidget {
 
 class NutritionListRight extends StatelessWidget {
   const NutritionListRight(
-      {Key key,
-      @required this.size,
-      this.nutritionImage,
-      this.nutritionSubTitle,
-      this.nutritionTitle})
-      : super(key: key);
+      {required this.size,
+      required this.nutritionImage,
+      required this.nutritionSubTitle,
+      required this.nutritionTitle});
 
   final Size size;
   final String nutritionImage;

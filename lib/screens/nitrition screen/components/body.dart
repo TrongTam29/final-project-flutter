@@ -5,7 +5,7 @@ import '../../../constants.dart';
 import 'caculate_BMI.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key key}) : super(key: key);
+  const Body();
 
   @override
   Widget build(BuildContext context) {

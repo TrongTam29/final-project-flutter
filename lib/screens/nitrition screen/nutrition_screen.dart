@@ -3,7 +3,7 @@ import 'package:my_app/components/appBar.dart';
 import 'package:my_app/screens/nitrition%20screen/components/body.dart';
 
 class NutritionScreen extends StatelessWidget {
-  const NutritionScreen({Key key}) : super(key: key);
+  const NutritionScreen();
 
   @override
   Widget build(BuildContext context) {

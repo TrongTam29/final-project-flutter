@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class AppBar_Components extends StatelessWidget {
-  const AppBar_Components({this.title});
+  const AppBar_Components({required this.title});
   final String title;
 
   @override

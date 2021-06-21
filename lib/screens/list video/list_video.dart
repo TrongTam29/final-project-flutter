@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ListVideo extends StatefulWidget {
-  ListVideo({this.url});
-  final url;
+  ListVideo({required this.url});
+  final String url;
 
   @override
   _ListVideoState createState() => _ListVideoState();
 }
 
 class _ListVideoState extends State<ListVideo> {
-  YoutubePlayerController _controller;
+  late YoutubePlayerController _controller;
 
   void runYoutubePlayer() {
     _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(widget.url),
+      initialVideoId: YoutubePlayer.convertUrlToId(widget.url)!,
       flags: YoutubePlayerFlags(
         enableCaption: false,
-        isLive: false,
+        isLive: true,
         autoPlay: false,
       ),
     );
