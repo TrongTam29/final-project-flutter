@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/constants.dart';
+
+import 'package:my_app/screens/nitrition%20screen/components/expandable_BMI.dart';
 
 class CaculateBMI extends StatefulWidget {
   CaculateBMI();
@@ -17,11 +18,19 @@ class _CaculateBMIState extends State<CaculateBMI> {
       child: Container(
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/caculate_BMI.png',
-              width: size.width * 0.9,
-              height: size.height * 0.1 + 10,
-              fit: BoxFit.fill,
+            Stack(
+              children: [
+                SizedBox(
+                  width: size.width * 0.9,
+                  height: size.height * 0.1 + 10,
+                  child: Image.asset(
+                    'assets/images/caculate_BMI.png',
+                    width: size.width * 0.9,
+                    height: size.height * 0.1 + 10,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
             ScrollOnExpand(
               scrollOnExpand: true,
@@ -30,15 +39,16 @@ class _CaculateBMIState extends State<CaculateBMI> {
                 theme: const ExpandableThemeData(
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
+                  tapBodyToExpand: true,
                 ),
-                expanded: BMI_Container(size: size),
+                expanded: ExpandableInBMI(),
                 collapsed: Text(
                   '',
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                builder: (_, expanded, collapsed) {
+                builder: (_, collapsed, expanded) {
                   return Expandable(
                     expanded: expanded,
                     collapsed: collapsed,
@@ -48,61 +58,6 @@ class _CaculateBMIState extends State<CaculateBMI> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// ignore: camel_case_types
-class BMI_Container extends StatelessWidget {
-  const BMI_Container({
-    required this.size,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 20),
-      width: size.width * 0.9,
-      height: size.height * 0.5,
-      color: kBMI_Caculator,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                color: Colors.white,
-                child: Text(
-                  'Male',
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                color: Colors.white,
-                child: Text(
-                  'Female',
-                ),
-              ),
-            ],
-          ),
-          // Row(
-          //   children: [
-          //     Text('Age:'),
-          //     TextField(
-          //       onChanged: (value) {},
-          //       decoration: InputDecoration(
-          //         hintText: 'Search',
-          //       ),
-          //     )
-          //   ],
-          // )
-        ],
       ),
     );
   }

@@ -12,7 +12,7 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.only(top: kDefaultPadding),
+        margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
         child: Column(
           children: <Widget>[
             Align(
@@ -20,6 +20,7 @@ class Body extends StatelessWidget {
             ),
             CaculateBMI(),
             NutritionListLeft(
+              nutritionMargin: 20,
               size: size,
               nutritionImage: 'assets/images/weight_loss.png',
               nutritionTitle: 'Diet for weight loss\n',
@@ -34,6 +35,7 @@ class Body extends StatelessWidget {
                   'This diet is for people with a BMI\n of less than 18.5',
             ),
             NutritionListLeft(
+              nutritionMargin: 50,
               size: size,
               nutritionImage: 'assets/images/gain_muscle.png',
               nutritionTitle: 'Diet for muscle gain\n',

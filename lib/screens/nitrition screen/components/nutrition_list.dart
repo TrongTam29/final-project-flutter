@@ -5,17 +5,19 @@ class NutritionListLeft extends StatelessWidget {
       {required this.size,
       required this.nutritionImage,
       required this.nutritionSubTitle,
-      required this.nutritionTitle});
+      required this.nutritionTitle,
+      required this.nutritionMargin});
 
   final Size size;
   final String nutritionImage;
   final String nutritionTitle;
   final String nutritionSubTitle;
+  final double nutritionMargin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 50),
+      margin: EdgeInsets.only(top: nutritionMargin),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[

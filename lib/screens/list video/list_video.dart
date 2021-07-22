@@ -1,77 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:my_app/components/appBar.dart';
 
-class ListVideo extends StatefulWidget {
-  ListVideo({required this.url});
-  final String url;
-
-  @override
-  _ListVideoState createState() => _ListVideoState();
-}
-
-class _ListVideoState extends State<ListVideo> {
-  late YoutubePlayerController _controller;
-
-  void runYoutubePlayer() {
-    _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(widget.url)!,
-      flags: YoutubePlayerFlags(
-        enableCaption: false,
-        isLive: true,
-        autoPlay: false,
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    runYoutubePlayer();
-    super.initState();
-  }
-
-  @override
-  void deactivate() {
-    _controller.pause();
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class ListVideo extends StatelessWidget {
+  const ListVideo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
-    return YoutubePlayerBuilder(
-        player: YoutubePlayer(
-          controller: _controller,
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: AppBar_Components(
+          title: "Chest",
         ),
-        builder: (context, player) {
-          return Scaffold(
-            // appBar: AppBar(
-            //   backgroundColor: kBackgroundColor,
-            // ),
-            body: SafeArea(
-              top: false,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    // margin: EdgeInsets.symmetric(vertical: 35),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: player,
+      ),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: size.height * 0.2 + 10,
+                  width: size.width * 1,
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      'assets/images/images.jpg',
+                      fit: BoxFit.fill,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Positioned(
+                  bottom: 30,
+                  left: 30,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: HexColor('#C4C4C4'),
+                    ),
+                    child: Text(
+                      'Dumbblell Chest Press',
+                      style: TextStyle(
+                          fontFamily: 'Poppins-SemiBold', fontSize: 16),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        });
+          ],
+        ),
+      ),
+    );
   }
 }
