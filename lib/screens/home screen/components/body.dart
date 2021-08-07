@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_app/screens/gym%20guide/gym_guide.dart';
 import 'package:my_app/screens/home%20screen/components/header_with_seachbox.dart';
+import 'package:my_app/screens/home%20workout/home_workout.dart';
+import 'package:my_app/screens/list%20cardio/list_cardio.dart';
+import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -20,28 +25,37 @@ class Body extends StatelessWidget {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: <Widget>[
-          Image.asset(
-            'assets/images/GymGuide.png',
-            width: 360,
-            height: 195,
-            fit: BoxFit.fill,
+          GestureDetector(
+            child: Image.asset(
+              'assets/images/GymGuide.png',
+              width: 360,
+              height: 195,
+              fit: BoxFit.fill,
+            ),
+            onTap: () => Get.to(GymGuide()),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/HomeWorkout.png',
-                  width: 170,
-                  height: 130,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/HomeWorkout.png',
+                    width: 170,
+                    height: 130,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () => Get.to(HomeWorkout()),
                 ),
-                Image.asset(
-                  'assets/images/nutrition.png',
-                  width: 170,
-                  height: 130,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/nutrition.png',
+                    width: 170,
+                    height: 130,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () => Get.to(NutritionScreen()),
                 )
               ],
             ),
@@ -51,17 +65,22 @@ class Body extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/MyWorkout.png',
-                  width: 170,
-                  height: 130,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/MyWorkout.png',
+                    width: 170,
+                    height: 130,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-                Image.asset(
-                  'assets/images/cardio.png',
-                  width: 170,
-                  height: 130,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/cardio.png',
+                    width: 170,
+                    height: 130,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () => Get.to(ListCardio()),
                 )
               ],
             ),

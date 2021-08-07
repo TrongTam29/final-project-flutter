@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
+import 'package:my_app/screens/gym%20schedule/gym_schedule.dart';
+import 'package:my_app/screens/list%20video/list_video.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -9,11 +12,14 @@ class Body extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: kDefaultPadding),
         child: Column(children: <Widget>[
-          Image.asset(
-            'assets/images/GymSchedule.png',
-            width: size.width * 0.9,
-            height: size.height * 0.2 + 20,
-            fit: BoxFit.fill,
+          GestureDetector(
+            child: Image.asset(
+              'assets/images/GymSchedule.png',
+              width: size.width * 0.9,
+              height: size.height * 0.2 + 20,
+              fit: BoxFit.fill,
+            ),
+            onTap: () => Get.to(GymSchedule()),
           ),
           Container(
             padding: EdgeInsets.only(top: 15),
@@ -32,17 +38,25 @@ class Body extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/Chest_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Chest_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Chest', idMuscle: 1)),
                 ),
-                Image.asset(
-                  'assets/images/ForeArm_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/ForeArm_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Biceps', idMuscle: 2)),
                 )
               ],
             ),
@@ -52,17 +66,25 @@ class Body extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/shoulder_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/shoulder_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Shoulder', idMuscle: 3)),
                 ),
-                Image.asset(
-                  'assets/images/backArm_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/backArm_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Triceps', idMuscle: 4)),
                 )
               ],
             ),
@@ -72,17 +94,25 @@ class Body extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/Back_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Back_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Back', idMuscle: 6)),
                 ),
-                Image.asset(
-                  'assets/images/Abs_gym.png',
-                  width: size.width * 0.5 - 27,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Abs_gym.png',
+                    width: size.width * 0.5 - 27,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Abs', idMuscle: 5)),
                 )
               ],
             ),
@@ -92,11 +122,15 @@ class Body extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  'assets/images/Leg_gym.png',
-                  width: size.width * 0.9,
-                  height: size.height * 0.2 - 35,
-                  fit: BoxFit.fill,
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Leg_gym.png',
+                    width: size.width * 0.9,
+                    height: size.height * 0.2 - 35,
+                    fit: BoxFit.fill,
+                  ),
+                  onTap: () =>
+                      Get.to(ListVideo(muscleName: 'Leg', idMuscle: 7)),
                 ),
               ],
             ),

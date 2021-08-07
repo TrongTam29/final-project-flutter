@@ -4,8 +4,9 @@ import 'package:my_app/screens/detail%20cardio/component/timer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailCardio extends StatefulWidget {
-  DetailCardio({required this.url});
+  DetailCardio({required this.url, required this.nameCarido});
   final String url;
+  final String nameCarido;
 
   @override
   _DetailCardioState createState() => _DetailCardioState();
@@ -57,6 +58,7 @@ class _DetailCardioState extends State<DetailCardio> {
         controller: _controller,
       ),
       builder: (context, player) {
+        Size size = MediaQuery.of(context).size;
         var textStyle = TextStyle(fontFamily: 'Poppins-SemiBold', fontSize: 24);
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -68,7 +70,7 @@ class _DetailCardioState extends State<DetailCardio> {
                 ),
                 ListTile(
                   title: Text(
-                    'Dumbblell Chest Press',
+                    widget.nameCarido,
                     style: textStyle,
                   ),
                   subtitle: Text(
@@ -79,6 +81,9 @@ class _DetailCardioState extends State<DetailCardio> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    SizedBox(
+                      height: size.height * 0.1 - 60,
+                    ),
                     TimerApp(),
                   ],
                 ),

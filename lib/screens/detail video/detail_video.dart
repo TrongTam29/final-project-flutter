@@ -4,8 +4,19 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailVideo extends StatefulWidget {
-  DetailVideo({required this.url});
+  DetailVideo(
+      {required this.url,
+      required this.nameExercise,
+      required this.breaks,
+      required this.detail,
+      required this.reps,
+      required this.sets});
   final String url;
+  final String nameExercise;
+  final String sets;
+  final String reps;
+  final String breaks;
+  final String detail;
 
   @override
   _DetailVideoState createState() => _DetailVideoState();
@@ -72,7 +83,7 @@ class _DetailVideoState extends State<DetailVideo> {
                   ),
                   ListTile(
                     title: Text(
-                      'Dumbblell Chest Press',
+                      widget.nameExercise,
                       style: textStyle,
                     ),
                     subtitle: Text('Gym guide - Chest'),
@@ -105,7 +116,7 @@ class _DetailVideoState extends State<DetailVideo> {
                                 padding: EdgeInsets.only(top: 20),
                               ),
                               Text(
-                                '8 - 12',
+                                widget.reps,
                                 style: textStyle,
                                 textAlign: TextAlign.center,
                               )
@@ -138,7 +149,7 @@ class _DetailVideoState extends State<DetailVideo> {
                                 padding: EdgeInsets.only(top: 20),
                               ),
                               Text(
-                                '3 - 4',
+                                widget.sets,
                                 style: textStyle,
                                 textAlign: TextAlign.center,
                               ),
@@ -174,7 +185,7 @@ class _DetailVideoState extends State<DetailVideo> {
                                 padding: EdgeInsets.only(top: 20),
                               ),
                               Text(
-                                '20s - 30s',
+                                widget.breaks,
                                 style: TextStyle(
                                     fontFamily: 'Poppins-SemiBold',
                                     fontSize: 24),
@@ -189,7 +200,7 @@ class _DetailVideoState extends State<DetailVideo> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
+                      widget.detail,
                       style: TextStyle(
                           fontFamily: 'Poppins-Light',
                           fontSize: 16,

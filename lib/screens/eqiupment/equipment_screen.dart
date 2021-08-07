@@ -1,42 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/components/appBar.dart';
-import 'package:my_app/screens/detail%20video/detail_video.dart';
-import 'package:my_app/screens/list%20video/model/exercise_controller.dart';
+import 'package:my_app/screens/eqiupment/model/equipment_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class ListVideo extends StatefulWidget {
-  const ListVideo({required this.muscleName, required this.idMuscle});
+class EquipmentScreen extends StatefulWidget {
+  const EquipmentScreen({Key? key}) : super(key: key);
 
-  final String muscleName;
-  final int idMuscle;
   @override
-  _ListVideoState createState() => _ListVideoState();
+  _EquipmentScreenState createState() => _EquipmentScreenState();
 }
 
-class _ListVideoState extends State<ListVideo> {
-  final ExerciseController exerciseController = Get.put(ExerciseController());
-  @override
-  void initState() {
-    super.initState();
-    exerciseController.fetchExercise(widget.idMuscle);
+class _EquipmentScreenState extends State<EquipmentScreen> {
+  void _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    EquipmentController equipmentController = Get.put(EquipmentController());
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar_Components(
-          title: widget.muscleName,
+          title: 'Workout Equipments',
         ),
       ),
       body: SafeArea(
         child: Obx(() {
-          if (exerciseController.isLoading.value)
+          if (equipmentController.isLoading.value)
             return Center(
               child: CupertinoActivityIndicator(),
             );
@@ -44,9 +49,9 @@ class _ListVideoState extends State<ListVideo> {
             return Container(
               margin: EdgeInsets.only(bottom: 20),
               child: ListView.builder(
-                itemCount: exerciseController.exerciseList.length,
+                itemCount: equipmentController.equipmentList.length,
                 itemBuilder: (context, index) {
-                  var item = exerciseController.exerciseList[index];
+                  var item = equipmentController.equipmentList[index];
                   return Stack(
                     children: [
                       GestureDetector(
@@ -62,14 +67,7 @@ class _ListVideoState extends State<ListVideo> {
                             ),
                           ),
                         ),
-                        onTap: () => Get.to(DetailVideo(
-                          url: item.link!,
-                          nameExercise: item.name!,
-                          reps: item.reps!,
-                          sets: item.sets!,
-                          breaks: item.exerciseBreak.toString(),
-                          detail: item.detail.toString(),
-                        )),
+                        onTap: () async => {_launchInBrowser(item.link!)},
                       ),
                       Positioned(
                         bottom: 10,

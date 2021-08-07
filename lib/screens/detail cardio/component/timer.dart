@@ -158,7 +158,7 @@ class _TimerAppState extends State<TimerApp> {
             LabelText(label: 'SEC', value: seconds.toString().padLeft(2, '0')),
           ],
         ),
-        SizedBox(height: size.height * 0.1 - 25),
+        SizedBox(height: size.height * 0.1 - 40),
         Container(
           width: double.infinity,
           height: size.height * 0.4 - 10,
@@ -203,7 +203,7 @@ class _TimerAppState extends State<TimerApp> {
                                     filled: true,
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          color: Colors.yellow, width: 2.0),
+                                          color: Colors.teal, width: 2.0),
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                   ),
@@ -228,7 +228,7 @@ class _TimerAppState extends State<TimerApp> {
                                     filled: true,
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          color: Colors.yellow, width: 2.0),
+                                          color: Colors.teal, width: 2.0),
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                   ),
@@ -268,7 +268,7 @@ class _TimerAppState extends State<TimerApp> {
                                     filled: true,
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          color: Colors.yellow, width: 2.0),
+                                          color: Colors.teal, width: 2.0),
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                   ),
