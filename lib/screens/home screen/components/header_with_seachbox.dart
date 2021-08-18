@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
+import 'package:my_app/screens/login/login_controller.dart';
 
 class HeaderAndSearchbox extends StatelessWidget {
   const HeaderAndSearchbox();
@@ -7,6 +10,8 @@ class HeaderAndSearchbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var user = FirebaseAuth.instance.currentUser;
+    var name = user!.displayName ?? 'trainer';
     return Column(
       children: <Widget>[
         Container(
@@ -29,7 +34,7 @@ class HeaderAndSearchbox extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      'Hi Trainer !',
+                      'Hi Trainer',
                       style: Theme.of(context).textTheme.headline5!.copyWith(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),

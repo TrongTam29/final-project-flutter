@@ -11,21 +11,25 @@ class TimerApp extends StatefulWidget {
 }
 
 class _TimerAppState extends State<TimerApp> {
-  static int minutes = 0;
+  int minutes2 = 0;
+  int seconds2 = 45;
+  int breakTime2 = 15;
+
+  int minutes = 0;
   int seconds = 45;
+  int breakTime = 15;
+
   bool exerOrBreak = true;
   bool continueOrBreak = false;
+  String labelText = "Let's Do It";
   String active = "Let's Do Exercise";
-  late TextEditingController minController;
-  late TextEditingController secController;
-  late TextEditingController breakController;
 
   late Timer timer;
 
   void restartTimerExer() {
     setState(() {
-      minutes = int.parse((minController.text));
-      seconds = int.parse((secController.text));
+      minutes = minutes2;
+      seconds = seconds2;
       exerOrBreak = true;
       flushBarExer(context);
     });
@@ -59,7 +63,7 @@ class _TimerAppState extends State<TimerApp> {
 
   void restartTimerBreak() {
     setState(() {
-      seconds = int.parse((breakController.text));
+      seconds = breakTime2;
       exerOrBreak = false;
       active = "Let's Breathe";
     });
@@ -95,10 +99,12 @@ class _TimerAppState extends State<TimerApp> {
   void timerPaused() {
     if (timer.isActive == true) {
       timer.cancel();
+      labelText = "Let's Do It";
     }
   }
 
   Future<void> startTimer() async {
+    labelText = 'Pause';
     if ((minutes != 0) || (seconds != 0)) {
       timer = Timer.periodic(Duration(milliseconds: 1000), (timer) {
         setState(() {
@@ -125,9 +131,6 @@ class _TimerAppState extends State<TimerApp> {
   @override
   void initState() {
     super.initState();
-    minController = new TextEditingController(text: '0');
-    secController = new TextEditingController(text: '45');
-    breakController = new TextEditingController(text: '15');
   }
 
   @override
@@ -135,9 +138,7 @@ class _TimerAppState extends State<TimerApp> {
     if (timer.isActive == true) {
       timer.cancel();
     }
-    minController.dispose();
-    secController.dispose();
-    breakController.dispose();
+
     super.dispose();
   }
 
@@ -158,167 +159,34 @@ class _TimerAppState extends State<TimerApp> {
             LabelText(label: 'SEC', value: seconds.toString().padLeft(2, '0')),
           ],
         ),
-        SizedBox(height: size.height * 0.1 - 40),
-        Container(
-          width: double.infinity,
-          height: size.height * 0.4 - 10,
-          decoration: BoxDecoration(
-            color: HexColor('#FCFEFD'),
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+        SizedBox(height: size.height * 0.1 - 20),
+        ElevatedButton.icon(
+          label: Text(
+            labelText,
+            style: TextStyle(fontSize: 20, color: Colors.black87),
           ),
-          child: Padding(
-            padding: EdgeInsets.only(top: 30, left: 20, right: 20),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Exercise Time",
-                            style: textStyle,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.1 - 80,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: size.width * 0.2 - 10,
-                                child: TextFormField(
-                                  controller: minController,
-                                  style: TextStyle(fontSize: 40),
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30)),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.teal, width: 2.0),
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                " : ",
-                                style: TextStyle(fontSize: 30),
-                              ),
-                              Container(
-                                width: size.width * 0.2 - 10,
-                                child: TextFormField(
-                                  controller: secController,
-                                  style: TextStyle(fontSize: 40),
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30)),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.teal, width: 2.0),
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Break Time",
-                            style: textStyle,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: size.width * 0.2 - 10,
-                                child: TextFormField(
-                                  controller: breakController,
-                                  style: TextStyle(fontSize: 40),
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30)),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.teal, width: 2.0),
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: size.height * 0.1 - 10,
-                ),
-                ElevatedButton.icon(
-                  label: Text(
-                    "Let's Do It",
-                    style: TextStyle(fontSize: 20, color: Colors.black87),
-                  ),
-                  icon: Icon(
-                    Icons.hourglass_bottom_rounded,
-                    size: 18,
-                    color: Colors.black87,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      continueOrBreak = !continueOrBreak;
-                      minutes = int.parse((minController.text));
-                      seconds = int.parse((secController.text));
-                    });
-                    if (continueOrBreak == false) {
-                      timerPaused();
-                      print(continueOrBreak);
-                    } else
-                      startTimer();
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(HexColor('#99008080')),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.white))),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 15, horizontal: 45)),
-                  ),
-                ),
-              ],
-            ),
+          icon: Icon(
+            Icons.hourglass_bottom_rounded,
+            size: 18,
+            color: Colors.black87,
+          ),
+          onPressed: () {
+            setState(() {
+              continueOrBreak = !continueOrBreak;
+            });
+            if (continueOrBreak == false) {
+              timerPaused();
+            } else
+              startTimer();
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(HexColor('#E68F839C')),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.white))),
+            padding: MaterialStateProperty.all(
+                EdgeInsets.symmetric(vertical: 15, horizontal: 45)),
           ),
         ),
       ],
@@ -336,10 +204,10 @@ class LabelText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: Colors.teal,
+        color: HexColor('#E68F839C'),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -347,7 +215,7 @@ class LabelText extends StatelessWidget {
           Text(
             '$value',
             style: TextStyle(
-                color: Colors.white, fontSize: 55, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),
           ),
           Text(
             '$label',

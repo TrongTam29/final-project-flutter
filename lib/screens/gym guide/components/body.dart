@@ -102,7 +102,7 @@ class Body extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                   onTap: () =>
-                      Get.to(ListVideo(muscleName: 'Back', idMuscle: 6)),
+                      Get.to(ListVideo(muscleName: 'Back', idMuscle: 5)),
                 ),
                 GestureDetector(
                   child: Image.asset(
@@ -112,7 +112,7 @@ class Body extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                   onTap: () =>
-                      Get.to(ListVideo(muscleName: 'Abs', idMuscle: 5)),
+                      Get.to(ListVideo(muscleName: 'Abs', idMuscle: 6)),
                 )
               ],
             ),

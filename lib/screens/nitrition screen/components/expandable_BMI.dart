@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_app/screens/nitrition%20screen/components/user_bmi.dart';
 
 import '../../../constants.dart';
 
@@ -21,12 +22,16 @@ class _ExpandableInBMI extends State {
   TextEditingController highController = new TextEditingController();
   TextEditingController weightController = new TextEditingController();
 
+  //To get Bmi and weight to display in profile
+  var userBmi = UserBmi();
+
   //It is rounded variable
   String? bmi1, bmr1, calor1;
 
   void bmiCaculator() {
     bmi = weight / ((high / 100) * (high / 100));
     bmi1 = (bmi).toStringAsFixed(1);
+    userBmi.bmiUser.value = bmi1!;
   }
 
   void bmrCaculator() {
@@ -91,7 +96,7 @@ class _ExpandableInBMI extends State {
           Container(
             margin: EdgeInsets.only(left: 20),
             width: size.width * 0.9,
-            height: size.height * 0.5 - 30,
+            height: size.height * 0.5 - 10,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
@@ -289,6 +294,7 @@ class _ExpandableInBMI extends State {
                         age = int.parse(ageController.text);
                         high = double.parse(highController.text);
                         weight = double.parse(weightController.text);
+                        userBmi.weightUser.value = weight;
                         bmiCaculator();
                         bmrCaculator();
                         caloNeeded();
@@ -297,6 +303,10 @@ class _ExpandableInBMI extends State {
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(HexColor('#E68FCB91')),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(color: Colors.white))),
                       padding: MaterialStateProperty.all(
                           EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
                     ),

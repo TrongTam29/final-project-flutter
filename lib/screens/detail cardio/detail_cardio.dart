@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/screens/detail%20cardio/component/timer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -82,7 +83,49 @@ class _DetailCardioState extends State<DetailCardio> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                      height: size.height * 0.1 - 60,
+                      height: size.height * 0.1 - 80,
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: HexColor('#E68F839C'),
+                    ),
+                    Row(
+                      children: [
+                        TextInfo(
+                          nameInfo: 'Duration',
+                          info: '10 mins',
+                        ),
+                        TextInfo(
+                          nameInfo: 'An Exercise',
+                          info: '45 sec',
+                        ),
+                        TextInfo(
+                          nameInfo: 'Break',
+                          info: '15 sec',
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        TextInfo(
+                          nameInfo: 'Calorie Burn',
+                          info: '200 - 300',
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        TextInfo(
+                          nameInfo: 'Body Focus',
+                          info: 'Total Body',
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: HexColor('#E68F839C'),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     TimerApp(),
                   ],
@@ -92,6 +135,29 @@ class _DetailCardioState extends State<DetailCardio> {
           ),
         );
       },
+    );
+  }
+}
+
+class TextInfo extends StatelessWidget {
+  const TextInfo({required this.nameInfo, required this.info});
+  final String nameInfo;
+  final String info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 20, top: 15, bottom: 15),
+      child: RichText(
+        text: TextSpan(
+            text: nameInfo + '\n',
+            style: TextStyle(fontSize: 18, color: HexColor('#E68F839C')),
+            children: [
+              TextSpan(
+                  text: info,
+                  style: TextStyle(fontSize: 22, color: Colors.black)),
+            ]),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
-import 'package:my_app/screens/list%20cardio/model/cardio_model.dart';
-import 'package:my_app/screens/list%20cardio/model/cardio_service.dart';
+import 'package:my_app/model/cardio/cardio_model.dart';
+import 'package:my_app/model/cardio/cardio_service.dart';
 
 class CardioController extends GetxController {
   var isLoading = true.obs;

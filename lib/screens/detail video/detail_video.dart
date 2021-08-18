@@ -29,6 +29,7 @@ class _DetailVideoState extends State<DetailVideo> {
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.url)!,
       flags: YoutubePlayerFlags(
+        startAt: 10,
         enableCaption: false,
         isLive: false,
         autoPlay: false,
@@ -73,7 +74,7 @@ class _DetailVideoState extends State<DetailVideo> {
               TextStyle(fontFamily: 'Poppins-SemiBold', fontSize: 24);
           return Scaffold(
             body: SafeArea(
-              child: Column(
+              child: ListView(
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(bottom: 10),

@@ -20,41 +20,48 @@ class _CaculateBMIState extends State<CaculateBMI> {
           children: [
             Stack(
               children: [
-                SizedBox(
-                  width: size.width * 0.9,
-                  height: size.height * 0.1 + 10,
-                  child: Image.asset(
-                    'assets/images/caculate_BMI.png',
-                    width: size.width * 0.9,
-                    height: size.height * 0.1 + 10,
-                    fit: BoxFit.fill,
+                Container(
+                  margin: EdgeInsets.only(top: 90),
+                  child: ScrollOnExpand(
+                    scrollOnExpand: true,
+                    scrollOnCollapse: false,
+                    child: ExpandablePanel(
+                      theme: const ExpandableThemeData(
+                        headerAlignment: ExpandablePanelHeaderAlignment.center,
+                        tapBodyToCollapse: true,
+                        tapBodyToExpand: true,
+                      ),
+                      expanded: ExpandableInBMI(),
+                      collapsed: Text(
+                        '',
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      builder: (_, collapsed, expanded) {
+                        return Expandable(
+                          expanded: expanded,
+                          collapsed: collapsed,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Positioned(
+                  child: Center(
+                    child: Container(
+                      width: size.width * 0.9,
+                      height: size.height * 0.1 + 10,
+                      child: Image.asset(
+                        'assets/images/caculate_BMI.png',
+                        width: size.width * 0.9,
+                        height: size.height * 0.1 + 10,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   ),
                 ),
               ],
-            ),
-            ScrollOnExpand(
-              scrollOnExpand: true,
-              scrollOnCollapse: false,
-              child: ExpandablePanel(
-                theme: const ExpandableThemeData(
-                  headerAlignment: ExpandablePanelHeaderAlignment.center,
-                  tapBodyToCollapse: true,
-                  tapBodyToExpand: true,
-                ),
-                expanded: ExpandableInBMI(),
-                collapsed: Text(
-                  '',
-                  softWrap: true,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                builder: (_, collapsed, expanded) {
-                  return Expandable(
-                    expanded: expanded,
-                    collapsed: collapsed,
-                  );
-                },
-              ),
             ),
           ],
         ),

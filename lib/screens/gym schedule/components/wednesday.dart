@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_app/screens/list%20video/list_video.dart';
 
 class Wednesday extends StatelessWidget {
   const Wednesday({Key? key}) : super(key: key);
@@ -72,19 +74,27 @@ class Wednesday extends StatelessWidget {
                               SizedBox(
                                 height: size.height * 0.1 - 45,
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.blueGrey[100],
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 20),
-                                  child: Text(
-                                    'Rested',
-                                    style: TextStyle(
-                                        fontFamily: 'Poppins-SemiBold',
-                                        fontSize: 18),
+                              GestureDetector(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.blueGrey[100],
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 20),
+                                    child: Text(
+                                      'Rested',
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins-SemiBold',
+                                          fontSize: 18),
+                                    ),
                                   ),
+                                ),
+                                onTap: () => Get.defaultDialog(
+                                  title: 'Hi Trainer',
+                                  titleStyle: TextStyle(fontSize: 25),
+                                  middleText: 'Beginners are off today',
+                                  middleTextStyle: TextStyle(fontSize: 20),
                                 ),
                               ),
                             ],
@@ -137,13 +147,21 @@ class Wednesday extends StatelessWidget {
                               SizedBox(
                                 height: size.height * 0.1 - 45,
                               ),
-                              MuscleGroup(
-                                image: 'assets/images/leg_schedule.jpg',
-                                muscle: 'Leg',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/abs_schedule.jpg',
+                                  muscle: 'Abs',
+                                ),
+                                onTap: () => Get.to(
+                                    ListVideo(muscleName: 'Abs', idMuscle: 6)),
                               ),
-                              MuscleGroup(
-                                image: 'assets/images/abs_schedule.jpg',
-                                muscle: 'Abs',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/leg_schedule.jpg',
+                                  muscle: 'Leg',
+                                ),
+                                onTap: () => Get.to(
+                                    ListVideo(muscleName: 'Leg', idMuscle: 7)),
                               ),
                             ],
                           ),

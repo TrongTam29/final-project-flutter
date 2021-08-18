@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_app/screens/list%20video/list_video.dart';
 
 class Thusday extends StatelessWidget {
   const Thusday({Key? key}) : super(key: key);
@@ -69,13 +71,21 @@ class Thusday extends StatelessWidget {
                               border: Border.all(color: HexColor('#E68F839C'))),
                           child: Column(
                             children: [
-                              MuscleGroup(
-                                image: 'assets/images/back_schedule.jpg',
-                                muscle: 'Back',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/back_schedule.jpg',
+                                  muscle: 'Back',
+                                ),
+                                onTap: () => Get.to(
+                                    ListVideo(muscleName: 'Back', idMuscle: 5)),
                               ),
-                              MuscleGroup(
-                                image: 'assets/images/biceps_schedule.jpg',
-                                muscle: 'Biceps',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/biceps_schedule.jpg',
+                                  muscle: 'Biceps',
+                                ),
+                                onTap: () => Get.to(ListVideo(
+                                    muscleName: 'Biceps', idMuscle: 2)),
                               ),
                             ],
                           ),
@@ -124,17 +134,29 @@ class Thusday extends StatelessWidget {
                               border: Border.all(color: HexColor('#E68F839C'))),
                           child: Column(
                             children: [
-                              MuscleGroup(
-                                image: 'assets/images/chest_schedule.jpg',
-                                muscle: 'Chest',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/chest_schedule.jpg',
+                                  muscle: 'Chest',
+                                ),
+                                onTap: () => Get.to(ListVideo(
+                                    muscleName: 'Chest', idMuscle: 1)),
                               ),
-                              MuscleGroup(
-                                image: 'assets/images/shoulder_schedule.jpg',
-                                muscle: 'Shoulder',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/shoulder_schedule.jpg',
+                                  muscle: 'Shoulder',
+                                ),
+                                onTap: () => Get.to(ListVideo(
+                                    muscleName: 'Shoulder', idMuscle: 3)),
                               ),
-                              MuscleGroup(
-                                image: 'assets/images/triceps_schedule.jpg',
-                                muscle: 'Triceps',
+                              GestureDetector(
+                                child: MuscleGroup(
+                                  image: 'assets/images/triceps_schedule.jpg',
+                                  muscle: 'Triceps',
+                                ),
+                                onTap: () => Get.to(ListVideo(
+                                    muscleName: 'Triceps', idMuscle: 4)),
                               ),
                             ],
                           ),

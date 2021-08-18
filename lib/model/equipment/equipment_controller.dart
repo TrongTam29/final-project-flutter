@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
-import 'package:my_app/screens/eqiupment/model/equipment_model.dart';
+import 'package:my_app/model/equipment/equipment_model.dart';
 import 'equipment_service.dart';
 
 class EquipmentController extends GetxController {

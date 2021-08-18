@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
+
 import 'package:my_app/components/appBar.dart';
-import 'package:my_app/screens/eqiupment/model/equipment_controller.dart';
+import 'package:my_app/model/equipment/equipment_controller.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class EquipmentScreen extends StatefulWidget {
@@ -70,18 +71,28 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                         onTap: () async => {_launchInBrowser(item.link!)},
                       ),
                       Positioned(
-                        bottom: 10,
+                        top: 25,
                         left: 25,
                         child: Container(
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: HexColor('#C4C4C4'),
+                            color: Colors.blueGrey[100],
                           ),
                           child: Text(
                             item.name!,
                             style: TextStyle(
-                                fontFamily: 'Poppins-SemiBold', fontSize: 16),
+                                fontFamily: 'Poppins-SemiBold', fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 15,
+                        child: Container(
+                          child: Image.asset(
+                            'assets/images/buy_now.png',
+                            width: 130,
                           ),
                         ),
                       ),

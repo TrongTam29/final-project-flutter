@@ -3,6 +3,9 @@ import 'dart:convert';
 List<Exercise> exerciseFromJson(String str) =>
     List<Exercise>.from(json.decode(str).map((x) => Exercise.fromJson(x)));
 
+Exercise exerciseModelFromJson(String str) =>
+    Exercise.fromJson(json.decode(str));
+
 String exerciseToJson(List<Exercise> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
+
 import 'package:my_app/components/appBar.dart';
+import 'package:my_app/model/cardio/cardio_controller.dart';
 import 'package:my_app/screens/detail%20cardio/detail_cardio.dart';
-import 'package:my_app/screens/list%20cardio/model/cardio_controller.dart';
 
 class ListCardio extends StatefulWidget {
   const ListCardio({Key? key}) : super(key: key);
@@ -43,14 +43,14 @@ class _ListCardioState extends State<ListCardio> {
                     children: [
                       GestureDetector(
                         child: Container(
-                          height: size.height * 0.3 - 40,
+                          height: size.height * 0.2 - 40,
                           width: size.width * 1,
-                          margin: EdgeInsets.only(top: 15, left: 15, right: 15),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(15),
                             child: Image.network(
                               'https://i.ytimg.com/vi/2MZSjB1WLFg/maxresdefault.jpg',
-                              fit: BoxFit.fill,
+                              fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
@@ -66,12 +66,14 @@ class _ListCardioState extends State<ListCardio> {
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: HexColor('#C4C4C4'),
+                            color: Colors.blueGrey[100],
                           ),
                           child: Text(
                             item.name!,
                             style: TextStyle(
-                                fontFamily: 'Poppins-SemiBold', fontSize: 16),
+                              fontFamily: 'Poppins-SemiBold',
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),

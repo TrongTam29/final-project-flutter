@@ -4,6 +4,7 @@ import 'package:my_app/screens/gym%20guide/gym_guide.dart';
 import 'package:my_app/screens/home%20screen/components/header_with_seachbox.dart';
 import 'package:my_app/screens/home%20workout/home_workout.dart';
 import 'package:my_app/screens/list%20cardio/list_cardio.dart';
+import 'package:my_app/screens/my%20workouts/my_workout.dart';
 import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
 
 class Body extends StatelessWidget {
@@ -72,6 +73,7 @@ class Body extends StatelessWidget {
                     height: 130,
                     fit: BoxFit.fill,
                   ),
+                  onTap: () => Get.to(MyWorkout()),
                 ),
                 GestureDetector(
                   child: Image.asset(

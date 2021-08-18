@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_app/components/appBar.dart';
 import 'package:my_app/screens/gym%20schedule/components/friday.dart';
 import 'package:my_app/screens/gym%20schedule/components/monday.dart';
@@ -28,6 +29,31 @@ class _GymSchedule extends State<GymSchedule> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
+  int? getDay() {
+    int? day;
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('EEE').format(now);
+    if ((formattedDate == 'Mon') || (formattedDate == 'Sun')) {
+      day = 0;
+    }
+    if (formattedDate == 'Tue') {
+      day = 1;
+    }
+    if (formattedDate == 'Wed') {
+      day = 2;
+    }
+    if (formattedDate == 'Thu') {
+      day = 3;
+    }
+    if (formattedDate == 'Fri') {
+      day = 4;
+    }
+    if (formattedDate == 'Sat') {
+      day = 5;
+    }
+    return day;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,9 +70,10 @@ class _GymSchedule extends State<GymSchedule> {
             carouselController: _controller,
             options: CarouselOptions(
                 height: size.height * 0.8 + 40,
+                initialPage: getDay()!,
                 autoPlay: false,
                 enlargeCenterPage: false,
-                viewportFraction: 1.0,
+                viewportFraction: 1,
                 aspectRatio: 2.0,
                 onPageChanged: (index, reason) {
                   setState(() {
@@ -65,8 +92,8 @@ class _GymSchedule extends State<GymSchedule> {
               return GestureDetector(
                 onTap: () => _controller.animateToPage(entry.key),
                 child: Container(
-                  width: 10.0,
-                  height: 10.0,
+                  width: size.width * 0.1 - 25,
+                  height: size.height * 0.1 - 73,
                   margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,

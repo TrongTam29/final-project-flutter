@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
-import 'package:my_app/screens/list%20video/model/exercise.dart';
+import 'package:my_app/model/exercise/exercise.dart';
 
 import 'remote_services.dart';
 
@@ -19,5 +19,11 @@ class ExerciseController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  postExercise(String name, String link, String image, String reps, String sets,
+      String exerciseBreak, String detail, int muscleGroupId) async {
+    var exercises = await Services.postExercise(
+        name, link, image, reps, sets, exerciseBreak, detail, muscleGroupId);
   }
 }
