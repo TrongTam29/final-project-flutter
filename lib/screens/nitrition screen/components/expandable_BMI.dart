@@ -96,7 +96,7 @@ class _ExpandableInBMI extends State {
           Container(
             margin: EdgeInsets.only(left: 20),
             width: size.width * 0.9,
-            height: size.height * 0.5 - 10,
+            height: size.height * 0.5 - 20,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
@@ -105,6 +105,9 @@ class _ExpandableInBMI extends State {
             ),
             child: Column(
               children: [
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

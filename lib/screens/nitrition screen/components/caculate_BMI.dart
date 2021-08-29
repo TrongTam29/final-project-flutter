@@ -21,15 +21,29 @@ class _CaculateBMIState extends State<CaculateBMI> {
             Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 90),
                   child: ScrollOnExpand(
                     scrollOnExpand: true,
                     scrollOnCollapse: false,
                     child: ExpandablePanel(
                       theme: const ExpandableThemeData(
+                        hasIcon: false,
                         headerAlignment: ExpandablePanelHeaderAlignment.center,
                         tapBodyToCollapse: true,
                         tapBodyToExpand: true,
+                      ),
+                      header: Positioned(
+                        child: Center(
+                          child: Container(
+                            width: size.width * 0.9,
+                            height: size.height * 0.1 + 10,
+                            child: Image.asset(
+                              'assets/images/caculate_BMI.png',
+                              width: size.width * 0.9,
+                              height: size.height * 0.1 + 10,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
                       ),
                       expanded: ExpandableInBMI(),
                       collapsed: Text(
@@ -44,20 +58,6 @@ class _CaculateBMIState extends State<CaculateBMI> {
                           collapsed: collapsed,
                         );
                       },
-                    ),
-                  ),
-                ),
-                Positioned(
-                  child: Center(
-                    child: Container(
-                      width: size.width * 0.9,
-                      height: size.height * 0.1 + 10,
-                      child: Image.asset(
-                        'assets/images/caculate_BMI.png',
-                        width: size.width * 0.9,
-                        height: size.height * 0.1 + 10,
-                        fit: BoxFit.fill,
-                      ),
                     ),
                   ),
                 ),

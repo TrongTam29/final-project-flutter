@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginController extends GetxController {
+class GgLoginController extends GetxController {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   var googleAccount = Rx<GoogleSignInAccount?>(null);
@@ -20,17 +20,9 @@ class LoginController extends GetxController {
       );
       final user = (await auth.signInWithCredential(credential)).user;
 
-      // final User? user = authResult.user;
       _uuid = user!.uid;
 
       return user;
-      // assert(!user!.isAnonymous);
-      // assert(await user!.getIdToken() != null);
-      // final User? currentUser = auth.currentUser;
-      // assert(user!.uid == currentUser!.uid);
-      // Get.to(() => HomeSreen());
-      // _uuid = user!.uid; // navigate to your wanted page
-      // return;
     } catch (e) {
       throw (e);
     }

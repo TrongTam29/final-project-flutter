@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/login/FbLogin_controller.dart';
+import 'package:my_app/login/GgLogin_controller.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
-import 'package:my_app/screens/login/login_controller.dart';
 
 class HelloScreen extends StatefulWidget {
   @override
@@ -10,13 +12,31 @@ class HelloScreen extends StatefulWidget {
 }
 
 class _HelloScreenState extends State<HelloScreen> {
-  LoginController controller = Get.put(LoginController());
+  GgLoginController ggController = Get.put(GgLoginController());
+  FbLoginController fbController = Get.put(FbLoginController());
   bool isLoggedin = false;
 
   @override
   void initState() {
     super.initState();
-    controller.autoLogin().then((value) {
+    ggController.autoLogin().then((value) {
+      if (value == 'null') {
+        print(isLoggedin);
+        setState(() {
+          isLoggedin = false;
+        });
+      } else if (value != null) {
+        setState(() {
+          isLoggedin = true;
+        });
+      } else {
+        setState(() {
+          isLoggedin = false;
+        });
+      }
+    });
+
+    fbController.autoLogin().then((value) {
       if (value == 'null') {
         print(isLoggedin);
         setState(() {
@@ -141,8 +161,8 @@ class _HelloScreenState extends State<HelloScreen> {
             SizedBox(height: 20),
             FloatingActionButton.extended(
               onPressed: () {
-                controller.loginWithGoogle().then((value) {
-                  controller.logIn().then((value1) {
+                ggController.loginWithGoogle().then((value) {
+                  ggController.logIn().then((value1) {
                     Get.to(() => HomeSreen());
                   });
                 });
@@ -158,7 +178,13 @@ class _HelloScreenState extends State<HelloScreen> {
             ),
             SizedBox(height: 20),
             FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                fbController.signInWithFacebook().then((value) {
+                  fbController.logIn().then((value1) {
+                    Get.to(() => HomeSreen());
+                  });
+                });
+              },
               label: Text('Login with Facebook'),
               icon: Image.asset(
                 'assets/images/facebook_icon.png',

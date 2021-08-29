@@ -2,17 +2,27 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_app/login/FbLogin_controller.dart';
+import 'package:my_app/login/GgLogin_controller.dart';
+import 'package:my_app/screens/alarm/alarm_view.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
-import 'package:my_app/screens/login/login_controller.dart';
+import 'package:my_app/screens/home%20screen/home_main.dart';
 import 'package:my_app/screens/nitrition%20screen/components/user_bmi.dart';
 
-class MenuProfile extends StatelessWidget {
+class MenuProfile extends StatefulWidget {
   const MenuProfile({Key? key}) : super(key: key);
 
   @override
+  _MenuProfileState createState() => _MenuProfileState();
+}
+
+class _MenuProfileState extends State<MenuProfile> {
+  @override
   Widget build(BuildContext context) {
-    final controller = Get.find<LoginController>();
-    var user = FirebaseAuth.instance.currentUser;
+    GgLoginController ggController = Get.put(GgLoginController());
+    FbLoginController fbController = Get.put(FbLoginController());
+    User? user = FirebaseAuth.instance.currentUser;
+    var fbUser = Get.arguments;
     Size size = MediaQuery.of(context).size;
     var userBmi = UserBmi();
     return Scaffold(
@@ -29,16 +39,18 @@ class MenuProfile extends StatelessWidget {
                   ListTile(
                     leading: CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage(user!.photoURL ??
+                      backgroundImage: NetworkImage(user?.photoURL ??
+                          fbUser?.photoURL ??
                           'https://i.pinimg.com/236x/d7/5d/22/d75d22e233d069059bb876ed36d1804c.jpg'),
                     ),
                     title: Text(
-                      user.displayName ?? 'Trainer',
+                      user?.displayName ?? fbUser?.displayName ?? 'Trainer',
                       style: TextStyle(
                         fontSize: 22,
                       ),
                     ),
-                    subtitle: Text(user.email ?? 'User@gmail.com'),
+                    subtitle:
+                        Text(user?.email ?? fbUser?.email ?? 'User@gmail.com'),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -61,7 +73,9 @@ class MenuProfile extends StatelessWidget {
                 child: ListView(
               children: [
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => HomeSreen());
+                  },
                   leading: Icon(
                     Icons.home,
                     color: Colors.black,
@@ -83,7 +97,9 @@ class MenuProfile extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => AlarmPage());
+                  },
                   leading: Icon(
                     Icons.alarm,
                     color: Colors.black,
@@ -109,8 +125,9 @@ class MenuProfile extends StatelessWidget {
                 ),
                 ListTile(
                   onTap: () {
-                    controller.logoutGoogle();
-                    controller.logOut();
+                    fbController.logOut();
+                    ggController.logoutGoogle();
+                    ggController.logOut();
                     Get.to(() => HelloScreen());
                   },
                   leading: Icon(

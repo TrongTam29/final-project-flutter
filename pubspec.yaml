@@ -26,7 +26,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   youtube_player_flutter: ^8.0.0
   expandable: ^5.0.1
-  get: ^4.1.4
+  get: ^4.3.8
   http: ^0.13.3
   hexcolor: ^2.0.4
   another_flushbar: ^1.10.24
@@ -37,11 +37,26 @@ dependencies:
   firebase_auth: ^3.0.1
   firebase_core: ^1.4.0
   shared_preferences: ^2.0.6
+  flutter_html: ^2.1.1
+  flutter_facebook_auth: ^3.5.1
+  flutter_local_notifications: ^8.1.1+1
+  flutter_launcher_icons: ^0.9.2
+  sqflite: ^2.0.0+4
+  timezone: ^0.7.0
+  dotted_border: ^2.0.0+1
+
+
   
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+# dev_dependencies:
+#   flutter_test:
+#     sdk: flutter
+#   flutter_launcher_icons: "^0.9.2"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
