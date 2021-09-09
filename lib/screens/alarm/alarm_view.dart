@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:intl/intl.dart';
 import 'package:my_app/main.dart';
 import 'package:my_app/screens/alarm/alarm_helper.dart';
@@ -15,6 +16,7 @@ class AlarmPage extends StatefulWidget {
 
 class _AlarmPageState extends State<AlarmPage> {
   tz.TZDateTime? _alarmTime;
+  String? _timezone;
   String? _alarmTimeString;
   AlarmHelper _alarmHelper = AlarmHelper();
   Future<List<AlarmInfo>>? _alarms;
@@ -23,6 +25,7 @@ class _AlarmPageState extends State<AlarmPage> {
   @override
   void initState() {
     tz.initializeTimeZones();
+    _getTimeZone();
     _alarmTime = tz.TZDateTime.now(tz.local);
     _alarmHelper.initializeDatabase().then((value) {
       print('------database intialized');
@@ -36,9 +39,20 @@ class _AlarmPageState extends State<AlarmPage> {
     if (mounted) setState(() {});
   }
 
+  Future<void> _getTimeZone() async {
+    try {
+      _timezone = await FlutterNativeTimezone.getLocalTimezone();
+      tz.setLocalLocation(tz.getLocation(_timezone!));
+      print(_timezone);
+    } catch (e) {
+      print('Could not get available timezones');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.indigo[300],
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 64),
         child: Column(
@@ -60,8 +74,8 @@ class _AlarmPageState extends State<AlarmPage> {
                     _currentAlarms = snapshot.data!;
                     return ListView(
                       children: snapshot.data!.map<Widget>((alarm) {
-                        var alarmTime =
-                            DateFormat('hh:mm aa').format(alarm.alarmDateTime!);
+                        var alarmTime = DateFormat('hh:mm aa').format(
+                            alarm.alarmDateTime!.add(Duration(hours: 7)));
                         var gradientColor = GradientTemplate
                             .gradientTemplate[alarm.gradientColorIndex!].colors;
                         return Container(
@@ -294,25 +308,34 @@ class _AlarmPageState extends State<AlarmPage> {
       'alarm_notif',
       'Channel for Alarm notification',
       icon: 'logo',
-      // sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
+      sound: RawResourceAndroidNotificationSound('wake_up_alarm'),
+      playSound: true,
+      importance: Importance.max,
+      priority: Priority.high,
       largeIcon: DrawableResourceAndroidBitmap('logo'),
     );
 
     var iOSPlatformChannelSpecifics = IOSNotificationDetails(
-        // sound: 'a_long_cold_sting.wav',
+        sound: 'wake_up_alarm',
         presentAlert: true,
         presentBadge: true,
         presentSound: true);
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
+    var _timeAlarm = DateFormat('HH:mm').format(scheduledNotificationDateTime);
 
-    await flutterLocalNotificationsPlugin.zonedSchedule(0, alarmInfo.title,
-        '456', scheduledNotificationDateTime, platformChannelSpecifics,
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        alarmInfo.title,
+        'Now is $_timeAlarm.Tap to start your workout',
+        scheduledNotificationDateTime,
+        platformChannelSpecifics,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);
+    print(scheduledNotificationDateTime);
   }
 
   void onSaveAlarm() {
@@ -325,7 +348,7 @@ class _AlarmPageState extends State<AlarmPage> {
     var alarmInfo = AlarmInfo(
       alarmDateTime: scheduleAlarmDateTime,
       gradientColorIndex: _currentAlarms!.length,
-      title: 'Alarm',
+      title: 'Fit Body Alarm',
     );
     _alarmHelper.insertAlarm(alarmInfo);
     scheduleAlarm(scheduleAlarmDateTime, alarmInfo);

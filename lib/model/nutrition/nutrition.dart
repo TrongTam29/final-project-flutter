@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-// static Nutrition nutritionFromJson(String str) => Nutrition.fromJson(json.decode(str));
+Nutrition nutritionFromJson(String str) => Nutrition.fromJson(json.decode(str));
 
 String nutritionToJson(Nutrition data) => json.encode(data.toJson());
 
@@ -42,8 +42,4 @@ class Nutrition {
         "createdAt": createdAt!.toIso8601String(),
         "updatedAt": updatedAt!.toIso8601String(),
       };
-
-  static Nutrition nutritionFromJson(String str) =>
-      Nutrition.fromJson(json.decode(str));
-  static Nutrition listFromJson(list) => Nutrition.fromJson(json.decode(list));
 }

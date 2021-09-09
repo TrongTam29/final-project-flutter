@@ -19,6 +19,8 @@ import 'package:my_app/screens/my%20workouts/my_workout.dart';
 import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
 import 'package:my_app/screens/nutriton%20detail/nutrition_detail.dart';
 import 'package:my_app/screens/nutriton%20detail/nutrition_getX.dart';
+import 'package:my_app/screens/society/examm.dart';
+import 'package:my_app/screens/society/society.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -48,7 +50,7 @@ Future<void> main() async {
   });
 
   await Firebase.initializeApp();
-  NutritionBinding().dependencies();
+  // NutritionBinding().dependencies();
   runApp(MyApp());
 }
 
@@ -63,6 +65,6 @@ class MyApp extends StatelessWidget {
             primaryColor: kPrimaryColor,
             textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: AlarmPage());
+        home: MyApp2());
   }
 }
