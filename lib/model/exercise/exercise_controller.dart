@@ -6,13 +6,14 @@ import 'remote_services.dart';
 
 class ExerciseController extends GetxController {
   var isLoading = true.obs;
+  var isLoadingfindExerciseByLink = true.obs;
   var exerciseList = List<Exercise>.generate(100, (index) => Exercise()).obs;
-  // List<Exercise> exerciseList = [];
+  final exerciseObj = Exercise().obs;
 
   void fetchExercise(int id) async {
     try {
       isLoading(true);
-      var exercises = await Services.fetchData(id);
+      var exercises = await ExerciseService.fetchData(id);
       if (exercises != null) {
         exerciseList.value = exercises;
       }
@@ -21,9 +22,21 @@ class ExerciseController extends GetxController {
     }
   }
 
-  postExercise(String name, String link, String image, String reps, String sets,
-      String exerciseBreak, String detail, int muscleGroupId) async {
-    var exercises = await Services.postExercise(
+  void postExercise(String name, String link, String image, String reps,
+      String sets, String exerciseBreak, String detail, int muscleGroupId) {
+    ExerciseService.postExercise(
         name, link, image, reps, sets, exerciseBreak, detail, muscleGroupId);
+  }
+
+  Future<Exercise?> findExerciseByLink(String link) async {
+    try {
+      isLoadingfindExerciseByLink(true);
+      var exercise = await ExerciseService.findExercise(link);
+      if (exercise != null) {
+        return exercise;
+      }
+    } finally {
+      isLoadingfindExerciseByLink(false);
+    }
   }
 }

@@ -7,3 +7,4 @@ const kBackgroundColor = Color(0xFFE5E5E5);
 const kBMI_Caculator = Color(0xFFDAD2D2);
 
 const double kDefaultPadding = 20.0;
+const String baseUrl = 'http://192.168.1.7:3000';

@@ -18,7 +18,6 @@ class _ListCardioState extends State<ListCardio> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     CardioController cardioController = Get.put(CardioController());
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),

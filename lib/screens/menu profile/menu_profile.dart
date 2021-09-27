@@ -7,7 +7,6 @@ import 'package:my_app/login/GgLogin_controller.dart';
 import 'package:my_app/screens/alarm/alarm_view.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
-import 'package:my_app/screens/nitrition%20screen/components/user_bmi.dart';
 
 class MenuProfile extends StatefulWidget {
   const MenuProfile({Key? key}) : super(key: key);
@@ -22,9 +21,9 @@ class _MenuProfileState extends State<MenuProfile> {
     GgLoginController ggController = Get.put(GgLoginController());
     FbLoginController fbController = Get.put(FbLoginController());
     User? user = FirebaseAuth.instance.currentUser;
-    var fbUser = Get.arguments;
+
     Size size = MediaQuery.of(context).size;
-    var userBmi = UserBmi();
+
     return Scaffold(
       backgroundColor: HexColor('#5E96AE'),
       body: SafeArea(
@@ -40,17 +39,15 @@ class _MenuProfileState extends State<MenuProfile> {
                     leading: CircleAvatar(
                       radius: 30,
                       backgroundImage: NetworkImage(user?.photoURL ??
-                          fbUser?.photoURL ??
                           'https://i.pinimg.com/236x/d7/5d/22/d75d22e233d069059bb876ed36d1804c.jpg'),
                     ),
                     title: Text(
-                      user?.displayName ?? fbUser?.displayName ?? 'Trainer',
+                      user?.displayName ?? 'Trainer',
                       style: TextStyle(
                         fontSize: 22,
                       ),
                     ),
-                    subtitle:
-                        Text(user?.email ?? fbUser?.email ?? 'User@gmail.com'),
+                    subtitle: Text(user?.email ?? 'User@gmail.com'),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -58,12 +55,10 @@ class _MenuProfileState extends State<MenuProfile> {
                       SizedBox(
                         height: 40,
                       ),
-                      Obx(
-                        () => Text(
-                          'BMI: \t\t\t ' + userBmi.bmiUser.value,
-                        ),
+                      Text(
+                        'BMI: \t\t\t ',
                       ),
-                      Obx(() => Text('Height: ${userBmi.weightUser.value}  Kg'))
+                      Text('Height:   Kg'),
                     ],
                   ),
                 ],

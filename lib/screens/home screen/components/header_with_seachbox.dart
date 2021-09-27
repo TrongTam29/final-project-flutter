@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
 
 class HeaderAndSearchbox extends StatelessWidget {
@@ -9,8 +8,16 @@ class HeaderAndSearchbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // var user = FirebaseAuth.instance.currentUser;
-    // var name = user!.displayName ?? 'trainer';
+    var user = FirebaseAuth.instance.currentUser;
+    var name = user?.displayName ?? 'Trainer';
+    String nameAfter = '';
+    if (name.length > 15) {
+      for (var i = 0; i <= 15; i++) {
+        nameAfter = nameAfter + name[i];
+      }
+    } else {
+      nameAfter = name;
+    }
     return Column(
       children: <Widget>[
         Container(
@@ -33,7 +40,7 @@ class HeaderAndSearchbox extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      'Hi Trainer',
+                      'Hi $nameAfter',
                       style: Theme.of(context).textTheme.headline5!.copyWith(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),

@@ -1,10 +1,16 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
+import 'package:my_app/model/cardio/cardio_model.dart';
+import 'package:my_app/model/user/user_controller.dart';
+import 'package:my_app/screens/gym%20guide/gym_guide.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
+import 'package:my_app/screens/home%20workout/home_workout.dart';
+import 'package:my_app/screens/my%20workouts/my_workout.dart';
+import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 class HelloScreen extends StatefulWidget {
   @override
@@ -14,27 +20,32 @@ class HelloScreen extends StatefulWidget {
 class _HelloScreenState extends State<HelloScreen> {
   GgLoginController ggController = Get.put(GgLoginController());
   FbLoginController fbController = Get.put(FbLoginController());
+  UserController userController = Get.put(UserController());
+
   bool isLoggedin = false;
+  var userAccount;
 
   @override
   void initState() {
     super.initState();
-    ggController.autoLogin().then((value) {
-      if (value == 'null') {
-        print(isLoggedin);
-        setState(() {
-          isLoggedin = false;
-        });
-      } else if (value != null) {
-        setState(() {
-          isLoggedin = true;
-        });
-      } else {
-        setState(() {
-          isLoggedin = false;
-        });
-      }
-    });
+    ggController.autoLogin().then(
+      (value) {
+        if (value == 'null') {
+          print(isLoggedin);
+          setState(() {
+            isLoggedin = false;
+          });
+        } else if (value != null) {
+          setState(() {
+            isLoggedin = true;
+          });
+        } else {
+          setState(() {
+            isLoggedin = false;
+          });
+        }
+      },
+    );
 
     fbController.autoLogin().then((value) {
       if (value == 'null') {
@@ -162,9 +173,12 @@ class _HelloScreenState extends State<HelloScreen> {
             FloatingActionButton.extended(
               onPressed: () {
                 ggController.loginWithGoogle().then((value) {
-                  ggController.logIn().then((value1) {
-                    Get.to(() => HomeSreen());
-                  });
+                  ggController.logIn();
+                  Get.to(() => HomeSreen());
+                  createUser(
+                      ggController.googleAccount.value!.displayName!,
+                      ggController.googleAccount.value!.email,
+                      ggController.googleAccount.value!.photoUrl!);
                 });
               },
               label: Text('Login with Google'),
@@ -180,9 +194,10 @@ class _HelloScreenState extends State<HelloScreen> {
             FloatingActionButton.extended(
               onPressed: () {
                 fbController.signInWithFacebook().then((value) {
-                  fbController.logIn().then((value1) {
-                    Get.to(() => HomeSreen());
-                  });
+                  fbController.logIn();
+                  Get.to(() => HomeSreen());
+                  createUser(value!.user!.displayName!, value.user!.email!,
+                      value.user!.photoURL!);
                 });
               },
               label: Text('Login with Facebook'),
@@ -212,5 +227,13 @@ class _HelloScreenState extends State<HelloScreen> {
         ),
       ),
     );
+  }
+
+  void createUser(String name, String email, String image) {
+    userAccount = userController.findEmailUser(email).then((result) {
+      if (result == 'username') {
+        userController.createUser(name, email, image);
+      }
+    });
   }
 }

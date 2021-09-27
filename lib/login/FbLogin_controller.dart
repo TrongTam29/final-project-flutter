@@ -33,7 +33,7 @@ class FbLoginController extends GetxController {
     prefs.setString('uid', _uuid);
   }
 
-  autoLogin() async {
+  Future<String> autoLogin() async {
     var prefs = await SharedPreferences.getInstance();
 
     String? _uid = prefs.getString('uid');

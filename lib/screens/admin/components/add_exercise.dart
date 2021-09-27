@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/constants.dart';
 import 'package:my_app/model/exercise/exercise.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
 
@@ -11,22 +12,30 @@ class AddExercise extends StatefulWidget {
 }
 
 class _AddExerciseState extends State<AddExercise> {
+  ExerciseController exerciseController = Get.put(ExerciseController());
+  var textStyle = TextStyle(fontSize: 18, color: Colors.black);
+  TextEditingController nameController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
+  TextEditingController linkController = TextEditingController();
+  TextEditingController repController = TextEditingController();
+  TextEditingController setController = TextEditingController();
+  TextEditingController breakTimeController = TextEditingController();
+  TextEditingController detailController = TextEditingController();
+  TextEditingController muscleGroupIDController = TextEditingController();
+  String name = '';
+  String image = '';
+  String link = '';
+  String rep = '';
+  String set = '';
+  String breakTime = '';
+  String detail = '';
+  int? muscleId;
+
   @override
   Widget build(BuildContext context) {
-    Exercise _exercise;
-    ExerciseController exerciseController = Get.put(ExerciseController());
-    var textStyle = TextStyle(fontSize: 18, color: Colors.black);
-    TextEditingController nameController = TextEditingController();
-    TextEditingController imageController = TextEditingController();
-    TextEditingController linkController = TextEditingController();
-    TextEditingController repController = TextEditingController();
-    TextEditingController setController = TextEditingController();
-    TextEditingController breakTimeController = TextEditingController();
-    TextEditingController detailController = TextEditingController();
-    TextEditingController muscleGroupIDController = TextEditingController();
-    return SingleChildScrollView(
-      child: SafeArea(
-          child: Column(
+    return Scaffold(
+      body: SafeArea(
+          child: ListView(
         children: [
           SizedBox(
             height: 30,
@@ -167,38 +176,35 @@ class _AddExerciseState extends State<AddExercise> {
               ),
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     final String name = nameController.text;
-          //     final String image = imageController.text;
-          //     final String link = linkController.text;
-          //     final String rep = repController.text;
-          //     final String set = setController.text;
-          //     final String breakTime = breakTimeController.text;
-          //     final String detail = breakTimeController.text;
-          //     final int muscleId = int.parse(muscleGroupIDController.text);
-          //     setState(() async {
-          //       _exercise = await exerciseController.postExercise(
-          //           name, link, image, rep, set, breakTime, detail, muscleId);
-          //     });
-          //   },
-          //   child: Center(
-          //     child: ListTile(
-          //       leading: Center(child: Icon(Icons.done)),
-          //       title: Center(child: Text('Done')),
-          //     ),
-          //   ),
-          //   style: ButtonStyle(
-          //     backgroundColor:
-          //         MaterialStateProperty.all(Colors.greenAccent[300]),
-          //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          //         RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.circular(20),
-          //             side: BorderSide(color: Colors.white))),
-          //     padding: MaterialStateProperty.all(
-          //         EdgeInsets.symmetric(vertical: 15, horizontal: 45)),
-          //   ),
-          // ),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              name = nameController.text;
+              image = imageController.text;
+              link = linkController.text;
+              rep = repController.text;
+              set = setController.text;
+              breakTime = breakTimeController.text;
+              detail = detailController.text;
+              muscleId = int.parse((muscleGroupIDController.text).toString());
+              setState(() {
+                exerciseController.postExercise(name, link, image, rep, set,
+                    breakTime, detail, muscleId ?? 1);
+              });
+            },
+            child: Text('Done'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: Colors.white))),
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 15, horizontal: 45)),
+            ),
+          ),
         ],
       )),
     );
