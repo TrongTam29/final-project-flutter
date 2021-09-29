@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/model/exerciseComment/exerciseComment_controller.dart';
 import 'package:my_app/model/exerciseComment/exerciseComment_model.dart';
 import 'package:my_app/model/user/user_controller.dart';
@@ -159,7 +158,7 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: HexColor('#DFCDCD'),
+                          color: Color(0xFFDFCDCD),
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,
@@ -192,7 +191,7 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: HexColor('#D8D0E0'),
+                          color: Color(0xFFD8D0E0),
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,
@@ -225,7 +224,7 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: HexColor('#DAD2D2'),
+                          color: Color(0xFFDAD2D2),
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,

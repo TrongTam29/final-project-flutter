@@ -31,18 +31,14 @@ class _CaculateBMIState extends State<CaculateBMI> {
                         tapBodyToCollapse: true,
                         tapBodyToExpand: true,
                       ),
-                      header: Positioned(
-                        child: Center(
-                          child: Container(
-                            width: size.width * 0.9,
-                            height: size.height * 0.1 + 10,
-                            child: Image.asset(
-                              'assets/images/caculate_BMI.png',
-                              width: size.width * 0.9,
-                              height: size.height * 0.1 + 10,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
+                      header: Container(
+                        width: size.width * 0.9,
+                        height: size.height * 0.1 + 10,
+                        child: Image.asset(
+                          'assets/images/caculate_BMI.png',
+                          width: size.width * 0.9,
+                          height: size.height * 0.1 + 10,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       expanded: ExpandableInBMI(),

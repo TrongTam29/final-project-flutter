@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 import '../../../constants.dart';
 
@@ -29,6 +28,8 @@ class _ExpandableInBMI extends State {
   void bmiCaculator() {
     bmi = weight / ((high / 100) * (high / 100));
     bmi1 = (bmi).toStringAsFixed(1);
+    print('bmi: $bmi');
+    print(bmi1);
   }
 
   void bmrCaculator() {
@@ -122,7 +123,7 @@ class _ExpandableInBMI extends State {
                         width: size.width * 0.3 - 10,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: _male ? HexColor('E6F6EBEB') : Colors.white,
+                          color: _male ? Color(0xE6F6EBEB) : Colors.white,
                         ),
                         child: Center(
                           child: RichText(
@@ -159,7 +160,7 @@ class _ExpandableInBMI extends State {
                         width: size.width * 0.3 - 10,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: _female ? HexColor('E6F6EBEB') : Colors.white,
+                          color: _female ? Color(0xE6F6EBEB) : Colors.white,
                         ),
                         child: Center(
                           child: RichText(
@@ -301,7 +302,7 @@ class _ExpandableInBMI extends State {
                     },
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(HexColor('#E68FCB91')),
+                          MaterialStateProperty.all(Color(0xE68FCB91)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -322,7 +323,7 @@ class _ExpandableInBMI extends State {
               width: size.width * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: HexColor('#808FCB91'),
+                color: Color(0xFF808FCB91),
               ),
               child: Column(
                 children: [
@@ -334,9 +335,8 @@ class _ExpandableInBMI extends State {
                     style: TextStyle(
                       fontSize: 18,
                       height: 2.2,
-                      fontFamily: 'Poppins-Rehular',
                       fontWeight: FontWeight.w400,
-                      color: HexColor('#026606'),
+                      color: Color(0xFF026606),
                     ),
                   ),
                 ],

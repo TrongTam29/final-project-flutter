@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
         child: Column(
-          children: <Widget>[
+          children: [
             Align(
               alignment: Alignment(0.2, 0.2),
             ),

@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/screens/detail%20cardio/component/timer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailCardio extends StatefulWidget {
-  DetailCardio({required this.url, required this.nameCarido});
+  DetailCardio(
+      {required this.url,
+      required this.nameCarido,
+      required this.breakTime,
+      required this.duration,
+      required this.exerTime,
+      required this.focus});
+
   final String url;
   final String nameCarido;
+  final String duration;
+  final String exerTime;
+  final String breakTime;
+  final String focus;
 
   @override
   _DetailCardioState createState() => _DetailCardioState();
@@ -85,10 +95,7 @@ class _DetailCardioState extends State<DetailCardio> {
                     SizedBox(
                       height: size.height * 0.1 - 80,
                     ),
-                    Divider(
-                      thickness: 1,
-                      color: HexColor('#E68F839C'),
-                    ),
+                    Divider(thickness: 1, color: Color(0xE68F839C)),
                     Row(
                       children: [
                         TextInfo(
@@ -122,7 +129,7 @@ class _DetailCardioState extends State<DetailCardio> {
                     ),
                     Divider(
                       thickness: 1,
-                      color: HexColor('#E68F839C'),
+                      color: Color(0xFFE68F839C),
                     ),
                     SizedBox(
                       height: 20,
@@ -151,7 +158,7 @@ class TextInfo extends StatelessWidget {
       child: RichText(
         text: TextSpan(
             text: nameInfo + '\n',
-            style: TextStyle(fontSize: 18, color: HexColor('#E68F839C')),
+            style: TextStyle(fontSize: 18, color: Color(0xE68F839C)),
             children: [
               TextSpan(
                   text: info,

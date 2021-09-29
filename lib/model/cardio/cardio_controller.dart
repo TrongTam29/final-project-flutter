@@ -5,6 +5,7 @@ import 'package:my_app/model/cardio/cardio_service.dart';
 
 class CardioController extends GetxController {
   var isLoading = true.obs;
+  var isLoadingfindCardioByLink = true.obs;
   var cardioList = List<Cardio>.generate(100, (index) => Cardio()).obs;
   // List<Exercise> exerciseList = [];
 
@@ -23,6 +24,18 @@ class CardioController extends GetxController {
       }
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<Cardio?> findCardioByLink(String link) async {
+    try {
+      isLoadingfindCardioByLink(true);
+      var cardio = await CardioService.findCardio(link);
+      if (cardio != null) {
+        return cardio;
+      }
+    } finally {
+      isLoadingfindCardioByLink(false);
     }
   }
 }

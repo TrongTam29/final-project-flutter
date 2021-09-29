@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/components/appBar.dart';
 import 'package:my_app/constants.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
@@ -314,7 +313,7 @@ class _ListVideoState extends State<ListVideo> {
                                                           horizontal: 25)),
                                               backgroundColor:
                                                   MaterialStateProperty.all(
-                                                      HexColor('#E68F839C')),
+                                                      Color(0xE68F839C)),
                                               shape: MaterialStateProperty.all<
                                                       RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
@@ -362,7 +361,7 @@ class _ListVideoState extends State<ListVideo> {
                                                   horizontal: 25)),
                                           backgroundColor:
                                               MaterialStateProperty.all(
-                                                  HexColor('#E68F839C')),
+                                                  Color(0xE68F839C)),
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(

@@ -3,14 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
-import 'package:my_app/model/cardio/cardio_model.dart';
 import 'package:my_app/model/user/user_controller.dart';
-import 'package:my_app/screens/gym%20guide/gym_guide.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
-import 'package:my_app/screens/home%20workout/home_workout.dart';
-import 'package:my_app/screens/my%20workouts/my_workout.dart';
-import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
-import 'package:quick_actions/quick_actions.dart';
 
 class HelloScreen extends StatefulWidget {
   @override

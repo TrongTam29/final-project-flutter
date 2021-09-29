@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/model/user/user_controller.dart';
 import 'package:my_app/model/userWorkout/userWorkout_controller.dart';
 import 'package:my_app/screens/gym%20guide/gym_guide.dart';
@@ -144,7 +143,7 @@ class _MethodsInBodyState extends State<MethodsInBody> {
                                                   horizontal: 25)),
                                           backgroundColor:
                                               MaterialStateProperty.all(
-                                                  HexColor('#E68F839C')),
+                                                  Color(0xE68F839C)),
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(

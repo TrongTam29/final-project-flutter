@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
 import 'package:my_app/screens/alarm/alarm_view.dart';
@@ -25,7 +24,7 @@ class _MenuProfileState extends State<MenuProfile> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: HexColor('#5E96AE'),
+      backgroundColor: Color(0xFF5E96AE),
       body: SafeArea(
         child: Column(
           children: [

@@ -56,6 +56,10 @@ class _ListCardioState extends State<ListCardio> {
                         onTap: () => Get.to(DetailCardio(
                           url: item.link!,
                           nameCarido: item.name!,
+                          breakTime: item.breakTime!,
+                          duration: item.duration!,
+                          exerTime: item.exerTime!,
+                          focus: item.focus!,
                         )),
                       ),
                       Positioned(
