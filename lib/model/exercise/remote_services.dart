@@ -51,8 +51,8 @@ class ExerciseService {
   }
 
   static Future<Exercise?> findExercise(String link) async {
-    var response = await client.get(Uri.parse(
-        'http://192.168.1.7:3000/exercise/find-exercise-by-link?link=$link'));
+    var response = await client
+        .get(Uri.parse('$baseUrl/exercise/find-exercise-by-link?link=$link'));
 
     if (response.statusCode == 200) {
       var json = response.body;

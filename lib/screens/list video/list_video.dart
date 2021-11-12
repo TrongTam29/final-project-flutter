@@ -69,7 +69,7 @@ class _ListVideoState extends State<ListVideo> {
       ),
       body: SafeArea(
         child: Obx(() {
-          if (exerciseController.isLoading.value &
+          if (exerciseController.isLoading.value &&
               workoutController.isLoading.value)
             return Center(
               child: CupertinoActivityIndicator(),

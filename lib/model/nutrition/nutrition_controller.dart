@@ -6,18 +6,19 @@ import 'nutrition_service.dart';
 class NutritionController extends GetxController {
   var isLoading = true.obs;
   // var nutritionList = List<Nutrition>.generate(100, (index) => Nutrition()).obs;
-  final nutritionObj = Nutrition().obs;
+  Rx<Nutrition> nutritionObj = Nutrition().obs;
   @override
   void onInit() {
     super.onInit();
   }
 
-  Future<Nutrition?> fetchNutrition(int nutritionId, String nameDay) async {
+  void fetchNutrition(int nutritionId, String nameDay) async {
     try {
       isLoading(true);
       var nutritions = await NutritionServices.fetchData(nutritionId, nameDay);
       if (nutritions != null) {
-        return nutritionObj.value = nutritions;
+        nutritionObj.value = nutritions;
+        // return nutritions;
       }
     } finally {
       isLoading(false);

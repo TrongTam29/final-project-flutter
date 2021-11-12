@@ -38,7 +38,7 @@ class DetailVideo extends StatefulWidget {
 class _DetailVideoState extends State<DetailVideo> {
   late YoutubePlayerController _controller;
   final TextEditingController commentController = TextEditingController();
-  final channel = IOWebSocketChannel.connect('ws://192.168.1.7:3000');
+  final channel = IOWebSocketChannel.connect(baseWsUrl);
   var user = FirebaseAuth.instance.currentUser;
   UserController userController = Get.put(UserController());
   ExerciseCommentController exerciseCommentController =

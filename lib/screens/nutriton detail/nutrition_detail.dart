@@ -6,13 +6,14 @@ import 'package:my_app/constants.dart';
 import 'package:my_app/model/nutrition/nutrition_controller.dart';
 
 class NutritionDetail extends StatelessWidget {
-  const NutritionDetail({Key? key}) : super(key: key);
+  const NutritionDetail({required this.nutritionId});
+  final int nutritionId;
 
   @override
   Widget build(BuildContext context) {
     NutritionController nutritionController = Get.put(NutritionController());
     return DefaultTabController(
-      length: 2,
+      length: 7,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -51,51 +52,44 @@ class NutritionDetail extends StatelessWidget {
             tabs: [
               Tab(child: Text('Monday', style: TextStyle(fontSize: 16))),
               Tab(child: Text('Tuesday', style: TextStyle(fontSize: 16))),
-              // Tab(child: Text('Wednesday', style: TextStyle(fontSize: 16))),
-              // Tab(child: Text('Thusday', style: TextStyle(fontSize: 16))),
-              // Tab(child: Text('Friday', style: TextStyle(fontSize: 16))),
-              // Tab(child: Text('Staturday', style: TextStyle(fontSize: 16))),
-              // Tab(child: Text('Sunday', style: TextStyle(fontSize: 16))),
+              Tab(child: Text('Wednesday', style: TextStyle(fontSize: 16))),
+              Tab(child: Text('Thursday', style: TextStyle(fontSize: 16))),
+              Tab(child: Text('Friday', style: TextStyle(fontSize: 16))),
+              Tab(child: Text('Staturday', style: TextStyle(fontSize: 16))),
+              Tab(child: Text('Sunday', style: TextStyle(fontSize: 16))),
             ],
           ),
         ),
         body: TabBarView(
           children: [
             NutritionTab(
-              nameDay: 'MonDay',
+              nameDay: 'Monday',
               nutritionId: 1,
-              nutritionController: nutritionController,
             ),
             NutritionTab(
               nutritionId: 1,
               nameDay: 'Tuesday',
-              nutritionController: nutritionController,
             ),
-            // NutritionTab(
-            //   nameDay: 'Wednesday',
-            //   nutritionId: 1,
-            //   nutritionController: nutritionController,
-            // ),
-            // NutritionTab(
-            //   nameDay: 'Thusday',
-            //   nutritionId: 1,
-            //   nutritionController: nutritionController,
-            // ),
-            // NutritionTab(
-            //   nameDay: 'Friday',
-            //   nutritionId: 1,
-            //   nutritionController: nutritionController,
-            // ),
-            // NutritionTab(
-            //   nameDay: 'Staturday',
-            //   nutritionId: 1,
-            //   nutritionController: nutritionController,
-            // ),
-            // NutritionTab(
-            //   nameDay: 'Sunday',
-            //   nutritionId: 1,
-            //   nutritionController: nutritionController,
-            // ),
+            NutritionTab(
+              nameDay: 'Wednesday',
+              nutritionId: 1,
+            ),
+            NutritionTab(
+              nameDay: 'Thursday',
+              nutritionId: 1,
+            ),
+            NutritionTab(
+              nameDay: 'Friday',
+              nutritionId: 1,
+            ),
+            NutritionTab(
+              nameDay: 'Staturday',
+              nutritionId: 1,
+            ),
+            NutritionTab(
+              nameDay: 'Sunday',
+              nutritionId: 1,
+            ),
           ],
         ),
       ),
@@ -104,13 +98,9 @@ class NutritionDetail extends StatelessWidget {
 }
 
 class NutritionTab extends StatefulWidget {
-  const NutritionTab(
-      {required this.nutritionController,
-      required this.nameDay,
-      required this.nutritionId});
+  const NutritionTab({required this.nameDay, required this.nutritionId});
   final String nameDay;
   final int nutritionId;
-  final NutritionController nutritionController;
 
   @override
   _NutritionTabState createState() => _NutritionTabState();
@@ -121,7 +111,9 @@ class _NutritionTabState extends State<NutritionTab> {
   @override
   void initState() {
     super.initState();
-    nutritionController.fetchNutrition(widget.nutritionId, widget.nameDay);
+    Future.delayed(Duration.zero, () async {
+      nutritionController.fetchNutrition(widget.nutritionId, widget.nameDay);
+    });
   }
 
   @override
@@ -129,7 +121,7 @@ class _NutritionTabState extends State<NutritionTab> {
     return SafeArea(
       child: Obx(
         () {
-          if (widget.nutritionController.isLoading.value)
+          if (nutritionController.isLoading.value)
             return Center(
               child: CupertinoActivityIndicator(),
             );
@@ -137,7 +129,7 @@ class _NutritionTabState extends State<NutritionTab> {
             return Container(
               child: Html(
                 data: nutritionController.nutritionObj.value.detail ??
-                    ' <h1>abc</h1>',
+                    ' <h1>The nutrition has not insert yet</h1>',
               ),
             );
         },
